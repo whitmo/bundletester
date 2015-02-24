@@ -131,7 +131,8 @@ class Runner(object):
     def __call__(self):
         self.build()
         bootstrapped = self.builder.bootstrap()
-        if isinstance(self.suite.model, models.Bundle):
+        if isinstance(self.suite.model, models.Bundle) and\
+           self.options.bundle_deploy:
             self._deploy(self.suite.model['bundle'])
         for element in self.suite:
             if isinstance(element, Suite):
